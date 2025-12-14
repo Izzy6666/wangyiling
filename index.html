@@ -1,0 +1,443 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>她还在唱 · 汪义玲的音乐小宇宙</title>
+  <style>
+    :root{
+      --bg1:#fff3c4;   /* 奶油黄 */
+      --bg2:#d6fff6;   /* 薄荷绿 */
+      --bg3:#ffd6e8;   /* 樱花粉 */
+      --ink:#1b1b1b;
+      --muted:#4a4a4a;
+      --card:rgba(255,255,255,.82);
+      --stroke:rgba(0,0,0,.10);
+      --hot1:#ff2d55;  /* 亮粉红 */
+      --hot2:#ff9500;  /* 亮橙 */
+      --hot3:#34c759;  /* 亮绿 */
+      --hot4:#007aff;  /* 亮蓝 */
+      --shadow: 0 10px 30px rgba(0,0,0,.10);
+      --radius: 22px;
+      --max: 980px;
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      font-family: -apple-system,BlinkMacSystemFont,"PingFang SC","Hiragino Sans GB","Microsoft YaHei",system-ui,Segoe UI,Roboto,Arial;
+      color:var(--ink);
+      background:
+        radial-gradient(800px 400px at 10% 10%, var(--bg3), transparent 60%),
+        radial-gradient(900px 450px at 90% 15%, var(--bg2), transparent 60%),
+        radial-gradient(900px 500px at 50% 90%, var(--bg1), transparent 55%),
+        #ffffff;
+      min-height:100vh;
+    }
+    a{color:inherit}
+    .wrap{max-width:var(--max); margin:0 auto; padding:22px 18px 60px}
+    .topbar{
+      position:sticky; top:0; z-index:20;
+      backdrop-filter: blur(10px);
+      background: rgba(255,255,255,.65);
+      border-bottom:1px solid var(--stroke);
+    }
+    .topbar .inner{
+      max-width:var(--max); margin:0 auto; padding:12px 18px;
+      display:flex; align-items:center; justify-content:space-between; gap:12px;
+    }
+    .brand{
+      display:flex; align-items:center; gap:10px; font-weight:800;
+      letter-spacing:.5px;
+    }
+    .dot{
+      width:14px;height:14px;border-radius:50%;
+      background: linear-gradient(135deg,var(--hot1),var(--hot2),var(--hot3),var(--hot4));
+      box-shadow: 0 4px 10px rgba(0,0,0,.15);
+    }
+    .nav{
+      display:flex; gap:10px; flex-wrap:wrap; justify-content:flex-end;
+    }
+    .chip{
+      text-decoration:none;
+      padding:8px 12px;
+      border:1px solid var(--stroke);
+      border-radius:999px;
+      background: rgba(255,255,255,.7);
+      font-size:13px;
+    }
+    .chip:hover{transform: translateY(-1px); box-shadow: 0 6px 16px rgba(0,0,0,.08)}
+    .hero{
+      margin-top:18px;
+      border-radius: var(--radius);
+      overflow:hidden;
+      box-shadow: var(--shadow);
+      border:1px solid var(--stroke);
+      background: linear-gradient(135deg, rgba(255,45,85,.12), rgba(255,149,0,.10), rgba(52,199,89,.10), rgba(0,122,255,.10));
+    }
+    .heroGrid{
+      display:grid; gap:18px;
+      grid-template-columns: 1.1fr .9fr;
+      padding:20px;
+    }
+    @media (max-width: 860px){
+      .heroGrid{grid-template-columns: 1fr}
+    }
+    .portrait{
+      border-radius: 18px;
+      border:1px solid var(--stroke);
+      overflow:hidden;
+      background: rgba(255,255,255,.55);
+      aspect-ratio: 16/10;
+      display:flex; align-items:center; justify-content:center;
+      position:relative;
+    }
+    .portrait img{
+      width:100%; height:100%; object-fit:cover; display:block;
+      filter:saturate(1.05) contrast(1.03);
+    }
+    .badge{
+      position:absolute; left:14px; top:14px;
+      padding:8px 12px;
+      background: rgba(255,255,255,.78);
+      border:1px solid var(--stroke);
+      border-radius: 999px;
+      font-weight:800;
+      font-size:13px;
+    }
+    .heroText{
+      display:flex; flex-direction:column; gap:12px;
+      padding:8px 2px;
+    }
+    h1{
+      margin:0;
+      font-size:30px;
+      line-height:1.15;
+    }
+    .subtitle{
+      margin:0;
+      color:var(--muted);
+      font-size:15px;
+    }
+    .callout{
+      margin-top:6px;
+      padding:14px 14px;
+      background: rgba(255,255,255,.72);
+      border:1px solid var(--stroke);
+      border-radius: 18px;
+    }
+    .callout b{background: linear-gradient(90deg,var(--hot1),var(--hot2),var(--hot4)); -webkit-background-clip:text; background-clip:text; color:transparent}
+    .btnRow{display:flex; flex-wrap:wrap; gap:10px; margin-top:6px}
+    .btn{
+      border:0; cursor:pointer;
+      padding:10px 14px;
+      border-radius: 14px;
+      font-weight:800;
+      color:#fff;
+      background: linear-gradient(135deg,var(--hot1),var(--hot2));
+      box-shadow: 0 10px 18px rgba(255,45,85,.18);
+    }
+    .btn.alt{
+      background: linear-gradient(135deg,var(--hot4),var(--hot3));
+      box-shadow: 0 10px 18px rgba(0,122,255,.14);
+    }
+    .btn.ghost{
+      background: rgba(255,255,255,.72);
+      color: var(--ink);
+      border:1px solid var(--stroke);
+      box-shadow:none;
+    }
+    .btn:hover{transform: translateY(-1px)}
+    section{
+      margin-top:18px;
+      padding:18px;
+      border-radius: var(--radius);
+      border:1px solid var(--stroke);
+      background: var(--card);
+      box-shadow: 0 10px 25px rgba(0,0,0,.06);
+    }
+    .secTitle{
+      display:flex; align-items:center; justify-content:space-between; gap:10px;
+      margin-bottom:10px;
+    }
+    .secTitle h2{margin:0; font-size:18px}
+    .mini{color:var(--muted); font-size:13px}
+    .grid2{display:grid; grid-template-columns: 1fr 1fr; gap:14px}
+    @media (max-width: 860px){ .grid2{grid-template-columns:1fr} }
+    .card{
+      border:1px solid var(--stroke);
+      border-radius:18px;
+      padding:14px;
+      background: rgba(255,255,255,.68);
+    }
+    .lyrics{
+      white-space: pre-wrap;
+      font-size:14px;
+      line-height:1.65;
+      margin:0;
+    }
+    .audio{
+      width:100%;
+      margin-top:10px;
+    }
+    .timeline{
+      display:flex; flex-direction:column; gap:10px;
+    }
+    .tItem{
+      display:grid;
+      grid-template-columns: 120px 1fr;
+      gap:12px;
+      padding:12px;
+      border-radius:16px;
+      border:1px solid var(--stroke);
+      background: rgba(255,255,255,.68);
+    }
+    @media (max-width: 560px){ .tItem{grid-template-columns:1fr} }
+    .tDate{
+      font-weight:900;
+      background: linear-gradient(90deg,var(--hot2),var(--hot4));
+      -webkit-background-clip:text; background-clip:text; color:transparent;
+    }
+    .gallery{
+      display:grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap:10px;
+    }
+    @media (max-width: 860px){ .gallery{grid-template-columns: repeat(2, 1fr);} }
+    @media (max-width: 520px){ .gallery{grid-template-columns: 1fr;} }
+    .ph{
+      border-radius:18px;
+      overflow:hidden;
+      border:1px solid var(--stroke);
+      background: rgba(255,255,255,.55);
+      aspect-ratio: 4/3;
+    }
+    .ph img{width:100%; height:100%; object-fit:cover; display:block}
+    footer{
+      margin-top:22px;
+      color:var(--muted);
+      font-size:12px;
+      text-align:center;
+      padding:12px 0 0;
+    }
+    .notice{
+      font-size:13px; color:var(--muted); line-height:1.6;
+      background: rgba(255,149,0,.08);
+      border:1px dashed rgba(255,149,0,.35);
+      padding:12px 14px;
+      border-radius:16px;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="topbar">
+    <div class="inner">
+      <div class="brand"><span class="dot"></span> 她还在唱</div>
+      <nav class="nav">
+        <a class="chip" href="#songs">作品</a>
+        <a class="chip" href="#story">人生小传</a>
+        <a class="chip" href="#gallery">相册</a>
+        <a class="chip" href="#video">视频</a>
+      </nav>
+    </div>
+  </div>
+
+  <main class="wrap">
+    <div class="hero" id="top">
+      <div class="heroGrid">
+        <div class="portrait">
+          <!-- 把 src 换成你奶奶的照片路径，比如 images/nainai.jpg -->
+          <img src="nainai.jpg" alt="奶奶照片（替换为你的图片）" />
+          <div class="badge">乐观向上 / 爱写歌 / 爱生活</div>
+        </div>
+        <div class="heroText">
+          <h1>给奶奶的音乐小宇宙</h1>
+          <p class="subtitle">放歌、放故事、放光。</p>
+
+          <div class="callout">
+            <div><b>“她还在唱”</b> 不是口号，是事实。</div>
+          </div>
+
+          <div class="btnRow">
+            <button class="btn" onclick="document.querySelector('#songs').scrollIntoView({behavior:'smooth'})">去听作品</button>
+            <button class="btn alt" onclick="document.querySelector('#story').scrollIntoView({behavior:'smooth'})">看她的故事</button>
+            <button class="btn ghost" onclick="copyLink()">复制本页文字祝福</button>
+          </div>
+
+          <div class="notice" style="margin-top:10px">
+            亲爱的奶奶～79岁生日快乐～
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <section id="songs">
+      <div class="secTitle">
+        <h2>🎵 作品</h2>
+        <div class="mini">她还在唱</div>
+      </div>
+
+      <div class="grid2">
+        <div class="card">
+          <div style="font-weight:900; font-size:16px;">《她还在唱》</div>
+          <div class="mini">温暖、明亮、抒情但不苦情</div>
+
+          <!-- 把 audio src 换成你的音频文件，比如 audio/her-song.mp3 -->
+          <audio class="audio" controls src="her-song.mp3"></audio>
+
+          <hr style="border:0;border-top:1px solid var(--stroke);margin:12px 0">
+
+          <pre class="lyrics" id="lyrics">
+[Verse 1]
+她走过很长的夜
+白色的灯 冷静的表
+他们说时间不站在她那边
+她却低头 把书翻了一页
+
+药名像星星一样陌生
+她一个一个记
+命不是等来的判决
+是她自己写的病历
+
+[Chorus]
+她还在唱
+哪怕世界已经给过答案
+她把痛折成旋律
+把命活成回旋
+
+她还在唱
+风声 旧事 和远走的人
+时间说她该停下
+可她偏要继续生存
+
+          </pre>
+
+        </div>
+
+        <div class="card">
+          <div style="font-weight:900; font-size:16px;">她的风格关键词</div>
+          <p class="mini" style="margin-top:6px; line-height:1.7">
+            乐观向上 · 不卖惨 · 有面子也有勇气 · 爱学习 · 爱分享 · 爱写歌<br>
+            把一切难题都当成“下一页”。
+          </p>
+
+          <div style="margin-top:10px; display:flex; flex-wrap:wrap; gap:8px;">
+            <span class="chip">阳光</span>
+            <span class="chip">抒情</span>
+            <span class="chip">坚定</span>
+            <span class="chip">温暖</span>
+            <span class="chip">轻快</span>
+            <span class="chip">会发光</span>
+          </div>
+
+          <hr style="border:0;border-top:1px solid var(--stroke);margin:12px 0">
+
+          <div style="font-weight:900;"></div>
+          <pre class="lyrics" style="font-size:13px; opacity:.95">
+[Verse 2]
+她爱过一个跌宕的人
+把一生写成波澜
+起落之间有过伤
+也有并肩的夜晚
+
+命运并不总是温柔
+但她始终没有松手
+有些爱不必完美
+却陪她走过最难的路口
+
+[Bridge]
+有些人活着是为了被看见
+她活着是因为不肯停
+如果命运是一条铁轨
+她偏要在上面种花 给风听
+
+[Final Chorus / Outro]
+她还在唱
+不是为了留下些什么
+只是因为
+她还在这世界上
+          </pre>
+        </div>
+      </div>
+    </section>
+
+    <section id="story">
+      <div class="secTitle">
+        <h2>☀️ 人生小传</h2>
+        <div class="mini">才华横溢的ENFJ</div>
+      </div>
+
+      <div class="timeline">
+        <div class="tItem">
+          <div class="tDate">她的底色</div>
+          <div>
+            她不是“被时间留下来”的人。她是那种会在黑夜里点灯、自己把路走亮的人。
+          </div>
+        </div>
+
+        <div class="tItem">
+          <div class="tDate">她的选择</div>
+          <div>
+            遇到难题，她不喜欢哭诉，更不靠卖惨。她更相信学习、行动、和持续的乐观。
+          </div>
+        </div>
+
+        <div class="tItem">
+          <div class="tDate">她的现在</div>
+          <div>
+            她写歌、唱歌、用工具创造新的作品。她想被看见，也配得上被看见。
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="gallery">
+      <div class="secTitle">
+        <h2>📷 相册</h2>
+        <div class="mini">家庭聚会领头人</div>
+      </div>
+
+      <div class="gallery">
+        <div class="ph"><img src="photo1.jpg" alt="照片1（替换）"></div>
+        <div class="ph"><img src="photo2.jpg" alt="照片2（替换）"></div>
+        <div class="ph"><img src="photo3.jpg" alt="照片3（替换）"></div>
+      </div>
+    </section>
+
+    <section id="video">
+      <div class="secTitle">
+        <h2>🎬 视频</h2>
+      </div>
+
+      <div class="grid2">
+        <div class="card">
+          <div style="font-weight:900;">水府庙游记-汪义玲作</div>
+          <p class="mini">2025.11 </p>
+          <video controls style="width:100%; border-radius:16px; border:1px solid var(--stroke); background:#000" src="video.mp4"></video>
+        </div>
+
+        <div class="card">
+          <div style="font-weight:900;">我爱你湘江（节选）-汪义玲作</div>
+            <p class="mini">2024.08 </p>
+          <video controls style="width:100%; border-radius:16px; border:1px solid var(--stroke); background:#000" src="video2.mp4"></video>
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      © 奶奶的音乐小宇宙 · 由小尹编辑，2025年12月
+    </footer>
+  </main>
+
+  <script>
+    function copyLyrics(){
+      const text = document.getElementById('lyrics').innerText.trim();
+      navigator.clipboard.writeText(text).then(()=>alert('歌词已复制。')).catch(()=>alert('复制失败了，手动选中也行。'));
+    }
+    function copyLink(){
+      const msg = "奶奶生日快乐！我把你的歌和故事做成了一个小网页：你一直在唱，也一直在发光。";
+      navigator.clipboard.writeText(msg).then(()=>alert('祝福文案已复制。')).catch(()=>alert('复制失败了，手动复制吧。'));
+    }
+  </script>
+</body>
+</html>
